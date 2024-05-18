@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priority Setter</title>
+    <link rel="stylesheet" href="/css/priority_setter.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel="stylesheet">
+        <link rel="icon" type="image" href="../../Icons/logo.png">
+
+</head>
+<body style="height: 800px;
+padding-left: 90px;">
+
+    <div class="header">
+        <div class="left">
+            <img class="logoimage" src="/images/logo.png" alt="zenith logo">
+        </div>
+        <!-- <h1 class="mid">Eisenhower Matrix</h1> -->
+        <div class="right">
+            
+        </div>
+        
+    </div>
+
+
+    <!-- ----------------------------------------------------------------- -->
+    <h1>Priority Setter</h1>
+
+  <div class="container">
+    <div class="list">
+      <h2>Important Tasks</h2>
+      <ul id="important-list"></ul>
+      <input type="text" id="important-task" placeholder="Add an important task">
+      <button onclick="addItem('important')">Add</button>
+    </div>
+    <div class="list">
+      <h2>Medium Tasks</h2>
+      <ul id="medium-list"></ul>
+      <input type="text" id="medium-task" placeholder="Add a medium task">
+      <button onclick="addItem('medium')">Add</button>
+    </div>
+    <div class="list">
+      <h2>Not-So-Urgent Tasks</h2>
+      <ul id="not-so-urgent-list"></ul>
+      <input type="text" id="not-so-urgent-task" placeholder="Add a not-so-urgent task">
+      <button onclick="addItem('not-so-urgent')">Add</button>
+    </div>
+  </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/priority_setter.js"></script>
+</body>
+</html>

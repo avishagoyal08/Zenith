@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zenith Home Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/public/css/home_page.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/home_page.css">
+
+</head>
+<body style="height: 800px; padding-left: 90px">
+    <div class="header">
+        <div class="left">
+            <img class="logoimage" src="/images/logo.png" alt="zenith logo" />
+        </div>
+        <h1 class="mid">Zenith</h1>
+        <div class="right"></div>
+    </div>
+    <!-- pomodoro and to-do -->
+    <div style="height: 200px; width: 200px; position: static; margin-top: 60px">
+        <div class="grid">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                      <h1>POMODORO</h1>
+                      <div class="card-header-buttons">
+                        <button
+                          id="buttonTypePomodoro"
+                          class="active"
+                          onclick="setPomodoroType(TIMER_TYPE_POMODORO);"
+                        >
+                          Pomodoro
+                        </button>
+        
+                        <button
+                          id="buttonTypeShortBreak"
+                          onclick="setPomodoroType(TIMER_TYPE_SHORT_BREAK);"
+                        >
+                          Short Break
+                        </button>
+                        <div id="pomodoro_settings">
+                          <i class="bx bx-cog bx-sm"></i>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <div class="card-body">
+                      <!-- in this div i also want to add buttons which can configure time of the progress value,increase  -->
+                      <div id="circularProgressBar" class="progress-bar">
+                        <div class="progress-bar-inner">
+                          <h2 class="progress-value">25:00</h2>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <div class="card-footer">
+                      <button class="btn-sucess" onclick="startTimer();">Start</button>
+                      <button class="btn-danger" onclick="stopTimer();">Stop</button>
+                      <button onclick="resetTimer();">Reset</button>
+                    </div>
+                  </div>
+
+            </div>
+            <div class="container1">
+                <div class="appto">
+                    <h2>TO-DO LIST</h2>
+                    <form action="/addTasktodo" method="POST" id="taskForm">
+                        <div class="row">
+                            <input type="text" id="input-box" name="taskName" placeholder="Add a new task" />
+                            <button type="submit">+</button>
+                        </div>
+                    </form>
+                    <ul id="listto">
+                        <% tasks.forEach(task => { %>
+                            <li id="<%= task._id %>">
+                                <!-- Add "x" symbol in front of each task -->
+                                <span class="delete-task" style="font-size: 20px; margin-right: 5px;" onclick="deleteTask('<%= task._id %>')">&#x2716;</span>
+                                <%= task.taskName %>
+                            </li>
+                        <% }); %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+       const circularProgressBar = document.querySelector("#circularProgressBar");
+const circularProgressBarNumber = document.querySelector("#circularProgressBar .progress-value");
+const buttonTypePomodoro = document.querySelector("#buttonTypePomodoro");
+const buttonTypeShortBreak = document.querySelector("#buttonTypeShortBreak");
+
+const pomodoroTimerInSeconds = 1500;
+const shortBreakTimerInSeconds = 300;
+const TIMER_TYPE_POMODORO = 'POMODORO';
+const TIMER_TYPE_SHORT_BREAK = 'SHORTBREAK';
+
+let progressInterval;
+let pomodoroType = TIMER_TYPE_POMODORO;
+let timerValue = pomodoroTimerInSeconds;
+let multiplierFactor = 360 / timerValue;
+
+const audio = new Audio('Source Code/HomePage/alarm/Eerie-clock-chime-sound-effect.mp3');
+
+function formatNumberInStringMinute(number) {
+    const minutes = Math.trunc(number / 60).toString().padStart(2, '0');
+    const seconds = Math.trunc(number % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+}
+
+const startTimer = () => {
+    progressInterval = setInterval(() => {
+        timerValue--;
+        setInfoCircularProgressBar();
+    }, 1000);
+
+    // Stop the audio after 2000 milliseconds (2 seconds)
+    setTimeout(stopAudio, 6000);
+}
+
+const stopTimer = () => clearInterval(progressInterval);
+
+const resetTimer = () => {
+    clearInterval(progressInterval);
+    timerValue = (pomodoroType === TIMER_TYPE_POMODORO) ? pomodoroTimerInSeconds : shortBreakTimerInSeconds;
+    multiplierFactor = 360 / timerValue;
+    setInfoCircularProgressBar();
+    stopAudio();
+}
+
+function setInfoCircularProgressBar() {
+    if (timerValue === 0) {
+        stopTimer();
+    }
+
+    circularProgressBarNumber.textContent = `${formatNumberInStringMinute(timerValue)}`;
+    circularProgressBar.style.background = `conic-gradient(var(--blue) ${timerValue * multiplierFactor}deg, var(--purple) 0deg)`;
+}
+
+const setPomodoroType = (type) => {
+    pomodoroType = type;
+
+    if (type === TIMER_TYPE_POMODORO) {
+        buttonTypeShortBreak.classList.remove("active");
+        buttonTypePomodoro.classList.add("active");
+    } else {
+        buttonTypePomodoro.classList.remove("active");
+        buttonTypeShortBreak.classList.add("active");
+    }
+
+    resetTimer();
+}
+
+
+const inputBox = document.getElementById("input-box");
+const ListContainer = document.getElementById("listto");
+function addTask(){
+    if(inputBox.value === ''){
+        alert("write something before adding!")
+    }
+    else{
+        let li = document.createElement("li");
+        li.innerHTML = inputBox.value;
+        ListContainer.appendChild(li);
+        let span = document.createElement("span");
+        span.innerHTML = "\u00d7";
+        li.appendChild(span);
+
+    }
+    inputBox.value = '';
+}
+
+ListContainer.addEventListener("click", function(e){
+    if(e.target.tagName === "LI") {
+        e.target.classList.toggle("checked");
+    }
+    
+    else if(e.target.tagName === "SPAN") {
+        e.target.parentElement.remove();
+    }
+
+}, false);
+
+
+
+  const linkColor = document.querySelectorAll('.nav__link')
+
+  function colorLink(){
+      linkColor.forEach(l => l.classList.remove('active-link'))
+      this.classList.add('active-link')
+  }
+  
+  linkColor.forEach(l => l.addEventListener('click', colorLink))
+  
+  /*=============== SHOW HIDDEN MENU ===============*/
+  const showMenu = (toggleId, navbarId) =>{
+      const toggle = document.getElementById(toggleId),
+      navbar = document.getElementById(navbarId)
+  
+      if(toggle && navbar){
+          toggle.addEventListener('click', ()=>{
+              /* Show menu */
+              navbar.classList.toggle('show-menu')
+              /* Rotate toggle icon */
+              toggle.classList.toggle('rotate-icon')
+          })
+      }
+  }
+  showMenu('nav-toggle','nav')
+
+
+let subMenu = document.getElementById("subMenu");
+        
+function toggleMenu(){
+    subMenu.classList.toggle("open-menu");
+}
+function deleteTask(taskId) {
+        if (confirm("Are you sure you want to delete this task?")) {
+            fetch(`/deleteTasktodo/${taskId}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Remove the task from the UI
+                    const taskElement = document.getElementById(taskId);
+                    if (taskElement) {
+                        taskElement.remove();
+                    }
+                } else {
+                    throw new Error('Failed to delete task');
+                }
+            })
+            .catch(error => console.error('Error deleting task:', error));
+        }
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+
+*,
+*:after,
+*:before {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+vertical-align: baseline;
+text-decoration: none;
+}
+
+:root {
+  --yellow: #e6aced;
+  --green: #3b2469;
+  --red: #e6aced;
+  --blue: #8b4513; /* Change blue to brown (#8b4513 is a shade of brown) */
+  --dark-blue: rgb(221, 190, 253);
+  --purple: #8b4513; /* Change purple to brown */
+  --purple-secondary: #8b4513; /* Change purple to brown */
+  --title-primary-color: rgb(255, 255, 255);
+  --title-secondary-color: black;
+  --first-color: hsl(228, 81%, 49%);
+  --title-color: hsl(228, 12%, 15%);
+  --text-color: hsl(228, 8%, 50%);
+  --body-color: hsl(228, 100%, 99%);
+  --container-color: #fff;
+}
+
+body{
+  margin: 0px;
+  padding: 0px;
+  background-color: #F4EBD0;
+}
+.header{
+  background-color:#6B240C;
+  color: #FEFBF6;
+  padding-left: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  z-index: 100; /* Set a higher z-index to ensure it stays above the content */
+
+}
+.left{
+  height: 40px;
+  width: 20px;
+}
+.logoimage {
+  height: 60px;
+  width: 70px;
+  margin-top: -7px;
+}
+
+
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(30, 81%, 49%); /* Brown color */
+  --title-color: hsl(30, 12%, 15%); /* Brown color */
+  --text-color: hsl(30, 8%, 50%);   /* Brown color */
+  --body-color: hsl(30, 100%, 99%); /* Light brown background color */
+  --container-color: #fff;          /* White color */
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: 'Ubuntu', sans-serif;
+  --normal-font-size: .938rem;
+}
+
+
+/* Responsive typography */
+@media screen and (min-width: 968px) {
+  :root {
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 200px) {
+  .nav__list {
+    column-gap: 20px;
+  }
+}
+
+
+
+/* Show menu */
+.show-menu {
+  width: 255px;
+}
+
+/* Rotate toggle icon */
+.rotate-icon {
+  transform: rotate(180deg);
+}
+
+/* For 2K & 4K resolutions */
+@media screen and (min-width: 2048px) {
+  body {
+    zoom: 1.7;
+  }
+}
+
+@media screen and (min-width: 3840px) {
+  body {
+    zoom: 2.5;
+  }
+}
+
+.hamburger-menu {
+  height: 24px;
+  margin-left: 10px;
+  margin-right: 24PX;
+  margin-top: 4px;
+}
+.logo {
+  height: 33px;
+  margin-left: 20px;
+  margin-right: 20PX;
+  
+}
+.right {
+  width: 180px;
+  margin-right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.apps {
+  height: 20px;
+}
+
+
+
+.userpp {
+  height: 30px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+.mid {
+  font-size: 2rem; 
+  margin-left: 130px;
+}
+        
+
+body{
+  align-items: center;
+}
+
+
+/* --------------------------------------------------------- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 50px;
+    color: #333;
+    font-size: xx-large;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list {
+    width: 70%;
+    margin-bottom: 80px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    box-sizing: border-box;
+}
+
+.list:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #6B240C;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #ff1a1a;
+}
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>MenstruBuddy</title>
+</head>
+
+    
+
+    <div class="page">
+        <header tabindex="0" class="header">
+            <img src="logo.png" alt="Logo" class="logo">
+            <div class="head_main">Zenith.</div>
+            <div id="profile-container">
+                <i class="fas fa-user-circle profile-icon"></i>
+                <div id="profile-box">
+                    <% if (user) { %>
+                    <p>Name: <%= user.name %></p>
+                    <p>Email: <%= user.email %></p>
+                    <% } else { %>
+                    <p>Name: Guest</p>
+                    <p>Email: guest@example.com</p>
+                    <% } %>
+                    <h4 class="log-out">
+                        <a href="/home">Log out</a>
+                    </h4>
+                </div>
+            </div>
+        </header>
+
+        <div class="left-side">
+            <p class="brand-text"></p>
+            <div class="quote-container">
+                <p class="quote">Efficiency Elevated, Success Simplified</p>
+                <p class="quote1">Revolutionize your learning and work with our web app. Empower your productivity and academic success with powerful tools tailored to your needs. From customizable schedules to progress tracking, stay organized, focused, and motivated. Say goodbye to procrastination and hello to productivity – your ultimate companion for achieving your goals.</p>
+            </div>
+        </div>
+
+        <div class="bottom-boxes">
+          <!-- First Row -->
+          <div class="row">
+              <div class="box">
+                  <h3><a href="/form">PCOS Prediction</a></h3>
+              </div>
+              <div class="gap"></div>
+              <div class="box">
+                  <h3><a href="/period">Period Tracking</a></h3>
+              </div>
+          </div>
+          <!-- Second Row -->
+          <div class="row">
+              <div class="box">
+                  <h3><a href="/gov">Government Schemes</a></h3>
+              </div>
+              <div class="gap"></div>
+              <div class="box">
+                  <h3><a href="/exe">Physical Exercises</a></h3>
+              </div>
+              <div class="gap"></div>
+              <div class="box">
+                  <h3><a href="/faq">Myth Busters</a></h3>
+              </div>
+              <div class="gap"></div>
+              <div class="box">
+                  <h3><a href="/data">Data</a></h3>
+              </div>
+              <div class="gap"></div>
+              <div class="box">
+                  <h3><a href="/team">Contact Us</a></h3>
+              </div>
+          </div>
+      </div>
+      
+
+        <div class="chatbot-container">
+            <h2 class="recent-posts-heading">Recent Posts</h2>
+            <div class="chat-card">
+                <a href="/secrets" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+
+                    <div class="ag-courses-item_title">
+                      Menstruation: science and society...
+                    </div>
+
+
+                </a>
+            </div>
+
+            <div class="chat-card">
+                <a href="/secrets" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+
+                    <div class="ag-courses-item_title">
+                      Menstruation related myths in India...
+                    </div>
+
+
+                </a>
+            </div>
+
+            <div class="chat-card">
+                <a href="/secrets" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+
+                    <div class="ag-courses-item_title">
+                      Why do I have period mood swings?...
+                    </div>
+
+
+                </a>
+            </div>
+
+            <div class="add-yours-box">
+                <a href="/secrets">Add yours</a>
+            </div>
+
+        </div>
+        <footer>
+            &copy; 2023 MenstruBuddy. All rights reserved.
+        </footer>
+
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
+        <script>
+            VANTA.HALO({
+                el: document.getElementById("halo"),
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00
+            })
+            
+        </script>
+        Include your app.js file here -->
+        <script src="app.js"></script> 
+
+</body>
+
+</html>
